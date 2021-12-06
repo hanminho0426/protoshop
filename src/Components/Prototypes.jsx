@@ -8,7 +8,7 @@ export default function Prototypes() {
     <main>
       <div className="prototypes">
         {prototypes.map((prototype) => {
-          const { id, thumbnail, title, price, desc, pieUrl } = prototype; //prototype에서 뺴오는 것
+          const { id, thumbnail, title, price, desc, pieUrl } = prototype;
           const click = () => {
             addToOrder(id);
           };
@@ -39,12 +39,13 @@ export default function Prototypes() {
                     className="btn btn--primary float--right"
                     onClick={click}
                   >
-                    <div className="icon icon--plus" />
+                    <i className="icon icon--plus" />
                   </div>
+
                   {title}
                 </div>
                 <p className="prototype__price">$ {price}</p>
-                <p className="prototype__desc">$ {desc}</p>
+                <p className="prototype__desc">{desc}</p>
               </div>
             </div>
           );

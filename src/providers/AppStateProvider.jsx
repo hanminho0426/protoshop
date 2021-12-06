@@ -58,9 +58,9 @@ const AppStateProvider = ({ children }) => {
       title: "The Adventures of Proto",
       artist: "Richard Oldfield",
       desc: `Made exclusively for Protopie Playoff 2021
-                      Shout up if you get stuck!
-                      For the full experience. View in the Protopie App.
-                      #PieDay #PlayOff #ProtoPie`,
+                    Shout up if you get stuck!
+                    For the full experience. View in the Protopie App.
+                    #PieDay #PlayOff #ProtoPie`,
       thumbnail:
         "https://prototype-shop.s3.ap-northeast-2.amazonaws.com/thumbnails/The_Adventures_of_Proto.mp4",
       price: 60,
@@ -81,12 +81,12 @@ const AppStateProvider = ({ children }) => {
       title: "Alwritey—Minimalist Text Editor",
       artist: "Fredo Tan",
       desc: `This minimalist text editor prototype was made with ProtoPie by Fredo Tan.
-                      ---
-                      Inspired by Writty, a simple writing app by Carlos Yllobre. Try out Writty at https://writtyapp.com.
-                      ---
-                      ProtoPie is an interactive prototyping tool for all digital products.
-                      ---
-                      Learn more about ProtoPie at https://protopie.io.`,
+                    ---
+                    Inspired by Writty, a simple writing app by Carlos Yllobre. Try out Writty at https://writtyapp.com.
+                    ---
+                    ProtoPie is an interactive prototyping tool for all digital products.
+                    ---
+                    Learn more about ProtoPie at https://protopie.io.`,
       thumbnail:
         "https://prototype-shop.s3.ap-northeast-2.amazonaws.com/thumbnails/minimalist-text-editor.mp4",
       price: 80,
@@ -128,7 +128,7 @@ const AppStateProvider = ({ children }) => {
       title: "Voice Note",
       artist: "Haerin Song",
       desc: `Made by Haerin Song
-                      (Soda Design)`,
+                    (Soda Design)`,
       thumbnail:
         "https://prototype-shop.s3.ap-northeast-2.amazonaws.com/thumbnails/Voice_note_with_sound_wave.mp4",
       price: 90,
@@ -137,11 +137,35 @@ const AppStateProvider = ({ children }) => {
   ]);
   const [orders, setOrders] = useState([]);
 
+  // [{id, quantity: 1}]
   const addToOrder = useCallback((id) => {
-    console.log(id);
+    setOrders((orders) => {
+      const finded = orders.find((order) => order.id === id);
+
+      if (finded === undefined) {
+        return [...orders, { id, quantity: 1 }];
+      } else {
+        return orders.map((order) => {
+          if (order.id === id) {
+            return {
+              id,
+              quantity: order.quantity + 1,
+            };
+          } else {
+            return order;
+          }
+        });
+      }
+    });
   }, []);
-  const remove = useCallback((id) => {}, []);
-  const removeAll = useCallback(() => {}, []);
+  const remove = useCallback((id) => {
+    setOrders((orders) => {
+      return orders.filter((order) => order.id !== id);
+    });
+  }, []);
+  const removeAll = useCallback(() => {
+    setOrders([]);
+  }, []);
 
   return (
     <AppStateContext.Provider

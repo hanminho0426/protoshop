@@ -2,14 +2,11 @@ export default function Header() {
   return (
     <header>
       <div className="header__container">
-        <div className="title"> 쇼핑몰 화면 </div>
-        <div className="subtitle">
-          Check out what other designers have created using ProtoPie—download
-          these examples to learn exactly how they made their interactions.
-        </div>
+        <div className="title">프로토 쇼핑몰</div>
+        <div className="subtitle">쇼핑몰 전체화면 입니다.</div>
         <div className="btn__area">
-          <a href="https://www.protopie.io" target="_BLANK" rel="noreferrer">
-            <button>Try ProtoPie Yourself</button>
+          <a href="/" target="_BLANK" rel="noreferrer">
+            <button>Home으로 돌아가기</button>
           </a>
         </div>
       </div>
